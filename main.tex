@@ -1,0 +1,74 @@
+\documentclass[12pt]{article}
+
+\input{00_Variables.tex}
+
+% Define metadata in the document
+\begin{filecontents}[overwrite]{main.xmpdata}
+    \Title{\thesistitle}
+    \Author{\thesisauthor}
+    \Language{\thesislanguage}
+    \Subject{\thesissubject}
+    \Keywords{\thesiskeywords}
+    \Publisher{\thesispublisher}
+    \CreationDate{\thesisdate}
+    \Copyright{\thesiscopyright}
+\end{filecontents}
+
+\input{preamble.tex}
+
+\input{00_Abbreviations.tex}
+
+\begin{document}
+
+\newfloat{formel}{H}{for}
+\floatname{formel}{Formel}
+
+\newfloat{code}{H}{pyc}
+\floatname{code}{Code}
+
+\CustomTitle{}
+\clearpage
+
+\newcounter{lastRomanPage}
+
+\pagenumbering{Roman}
+\setcounter{page}{1}
+
+\input{01_Independence.tex}
+\clearpage
+
+\input{02_Tools.tex}
+\clearpage
+
+\input{03_Abstract.tex}
+\clearpage
+
+\input{05_Directories.tex}
+\clearpage
+
+% Save the current Roman page number
+\setcounter{lastRomanPage}{\value{page}}
+
+% Switch to Arabic page numbering
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\input{10_Introduction.tex}
+\clearpage
+
+\input{20_Mainpart.tex}
+\clearpage
+
+\input{30_Conclusion.tex}
+\clearpage
+
+\pagenumbering{Roman}
+\setcounter{page}{\value{lastRomanPage}}
+
+\addcontentsline{toc}{section}{\bibname}
+\printbibliography{}
+
+\clearpage
+\input{40_Appendix.tex}
+
+\end{document}

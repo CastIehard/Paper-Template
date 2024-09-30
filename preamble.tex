@@ -1,0 +1,201 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%   Zusaetzliche Pakete  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Plotbar
+\usepackage[english]{babel}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.17}
+\usepackage{pgfplotstable}
+\usepackage{multirow}
+\usepackage{colorprofiles}
+
+\usepackage[hidelinks]{hyperref}
+
+\usepackage{xspace}
+
+\usepackage{pdfpages}
+
+\usepackage{acro}
+\usepackage{pdfcomment}
+\usepackage{longtable}
+\acsetup{
+	make-links 		= 	true,
+	pdfcomments/use	=	true,
+	%remove the section header
+	list/heading	=	none,
+	list/template	=	longtable % Use the longtable environment for better control
+}
+
+% Custom colors
+\usepackage{color}
+\definecolor{deepblue}{rgb}{0,0,0.8}
+\definecolor{deepred}{rgb}{0.8,0,0}
+\definecolor{deepgreen}{rgb}{0,0.8,0}
+\definecolor{blackbackground}{rgb}{0.1,0.1,0.2}
+
+\usepackage{listings}
+
+% Python style for highlighting
+\newcommand\pythonstyle{\lstset{
+	language=Python,
+	basicstyle=\ttfamily \color{white},
+	morekeywords={self},              % Add keywords here
+	keywordstyle=\ttb\color{deepblue},
+	emph={MyClass,__init__},          % Custom highlighting
+	emphstyle=\ttb\color{deepred},
+	stringstyle=\color{deepgreen},
+	showstringspaces=false,
+	breaklines=true,
+	backgroundcolor=\color{blackbackground}
+}}
+
+% Python environment
+\lstnewenvironment{python}[1][]
+{
+\pythonstyle
+\lstset{#1}
+}
+{}
+
+% Python for external files
+\newcommand\pythonexternal[2][]{{
+\pythonstyle
+\lstinputlisting[#1]{#2}}}
+
+% Python for inline
+\newcommand\pythoninline[1]{\colorbox{blackbackground}{\texttt{\color{white}\lstinline!#1!}}}
+
+
+\renewcommand{\lstlistingname}{Code}
+
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+\usepackage{a4wide}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage[table]{xcolor}
+\usepackage{colortbl}
+\usepackage{caption}
+\usepackage{nameref}
+\usepackage{tikz}
+\usepackage{verbatim}
+\usepackage{csquotes}
+\usepackage{lmodern} 
+\usepackage{booktabs} 
+% \hypersetup{%Change later
+% 	colorlinks=true,
+% 	linkcolor=red,
+% 	urlcolor=red,
+% 	citecolor=red
+% }
+\usepackage{array}
+\usepackage{flowchart}
+\usepackage{makecell,tabularx} %Für Tabellen
+
+\usepackage{siunitx}
+\usepackage{amsmath}
+\usepackage{setspace} %Zeilenabstand
+\renewcommand{\baselinestretch}{1.6}
+\usepackage[a4paper, left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm]{geometry} % Randabstand 2,5 cm
+\usepackage{tcolorbox}
+% Definition der Box mit schwarzem Rahmen
+\newtcolorbox{blackframebox}{
+	colframe=black, % Rahmenfarbe der Box
+	boxrule=1pt, % Rahmendicke
+	arc=0pt, % Abrundung der Ecken
+	boxsep=5pt, % Abstand zwischen Text und Rahmen
+	left=5pt, % Linker Randabstand
+	right=5pt, % Rechter Randabstand
+	top=5pt, % Oberer Randabstand
+	bottom=0pt, % Unterer Randabstand
+	%colback=lightgray % Hintergrundfarbe der Box
+}
+\usepackage[sorting=none, backend=biber, style=numeric]{biblatex}
+\usepackage[ddmmyyyy]{datetime}
+\usepackage{placeins} %Für FloatBarrier
+\usepackage{algorithm}
+\usepackage[export]{adjustbox}
+
+\addbibresource{Literature.bib}
+
+\setlength{\parindent}{0em}%Kein Einrücken bei Paragraphen 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Definition der Kopfzeile %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\kindofthesis~\thesisauthor}
+\setlength{\headheight}{15pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Definition der Fußzeile %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\fancyfoot[C]{Page \thepage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  Definition des Deckblattes und der Titelseite  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\CustomTitle}[0]{
+	\thispagestyle{empty}
+	\begin{figure}
+		\begin{minipage}{0.4\linewidth}
+			\includegraphics[height=2.0cm,left]{Bilder/LogoLeft.png} 
+		\end{minipage} 
+		\hfill
+		\begin{minipage}{0.4\linewidth}
+			\includegraphics[height=2.0cm,right]{Bilder/LogoRight.png}
+		\end{minipage}
+	\end{figure}
+  
+  \vspace*{\stretch{1}}
+  \begin{center}
+    \vspace*{\stretch{0.5}}
+    \bfseries\Huge \thesistitle\\
+
+	\vspace*{\stretch{0.5}}
+    \bfseries\Huge \kindofthesis\\	 
+
+    \vspace*{\stretch{0.5}}
+    \bfseries\large
+	von
+    \\
+    \thesisauthor\\
+    \vspace*{\stretch{0.5}}
+    \small
+  \end{center}
+
+  \vspace*{\stretch{1}}
+
+  \begin{tabular}{l l}
+    Working Period: & \thesisstartdate ~- \thesisenddate\\
+    Matriculation Number: & \immatrikulationnumber\\
+    Course: & \universitycourse\\
+    Program: & \studycourse\\
+    University: & \university\\ 
+    Submission Date: & \thesisenddate\\
+    Academic Examiner: & \unicorrector\\
+    Company Examiner: & \companycorrector\\
+\end{tabular}
+
+ \newpage
+}
+
+
+\titlespacing*{\section}
+{0pt}{3.5ex plus 1ex minus .2ex}{.2ex plus .2ex}
+\titlespacing*{\subsection}
+{0pt}{1.5ex plus 1ex minus .2ex}{.2ex plus .2ex}
+\titlespacing*{\subsubsection}
+{0pt}{1.5ex plus 1ex minus .2ex}{.2ex plus .2ex}
+
+\setcounter{tocdepth}{2}%Ebenen im Inhaltsverzeichnis
+\setcounter{secnumdepth}{3}%Ebenen im Inhaltsverzeichnis
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  Beginn des Dokuments  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
